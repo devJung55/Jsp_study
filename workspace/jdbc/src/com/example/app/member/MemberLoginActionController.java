@@ -2,7 +2,6 @@ package com.example.app.member;
 
 import java.io.IOException;
 import java.rmi.ServerException;
-import java.util.Base64;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -10,29 +9,30 @@ import javax.servlet.http.HttpServletResponse;
 import com.example.app.Action;
 import com.example.app.Result;
 import com.example.app.dao.MemberDAO;
-import com.example.app.domain.MemberVO;
 
-public class MemberJoinActionController implements Action{
+public class MemberLoginActionController implements Action {
 	@Override
 	public Result execute(HttpServletRequest req, HttpServletResponse resp) throws ServerException, IOException {
-		
-		
-		MemberVO memberVO = new MemberVO();
 		MemberDAO memberDAO = new MemberDAO();
 		Result result = new Result();
+		String path = null;
+		Long memberId = null;
 		
-		memberVO.setMemberIdentification(req.getParameter("memberIdentification"));
-		memberVO.setMemberPassword(new String(Base64.getEncoder().encode(req.getParameter("memberPassword").getBytes())));
+		memberId = memberDAO.login(req.getParameter("memberIdentification"), req.getParameter("memberPassword"));
 		
-		memberDAO.join(memberVO);
+		if(memberId != null) {
+			path = "/index.main";
+			req.getSession().setAttribute("memberId", memberId);
+		}else {
+			path = "/login.member?login=false";
+		}
 		
-		result.setPath(req.getContextPath() + "/login.member");
+		result.setPath(req.getContextPath() + path);
 		result.setRedirect(true);
 		
 		return result;
 	}
 }
-
 
 
 
