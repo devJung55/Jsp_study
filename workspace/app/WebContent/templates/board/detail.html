@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>상세보기</title>
+    <link rel="shortcut icon" href="/app/assets/images/favicon.png">
+    <link rel="stylesheet" href="/app/assets/css/board/board.css">
+</head>
+
+<body>
+    <main id="board">
+        <header>
+            <div id="header">
+                <div id="search">
+                    <div class="search-wrap">
+                        <form action="">
+                            <div class="search-container">
+                                <input type="text" autocomplete="off">
+                                <button type="button" onclick=""><img src="/app/assets/images/search.png"
+                                        width="20px"></button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div id="logo">
+                    <img src="/app/assets/images/logo.png">
+                </div>
+                <div id="category">
+                    <div>
+                        <a href="javascript:void(0)">로그인</a>
+                    </div>
+                    <div>
+                        <a href="javascript:void(0)">회원가입</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <section id="board-banner">
+            <div><a href="javascript:void(0)"><img src="/app/assets/images/board_banner.png"></a></div>
+        </section>
+        <section id="info-wrap">
+            <article id="info-container">
+                <h6 class="info">게시글 상세보기</h6>
+                <section class="order">
+                    <a href="javascript:void(0)">목록으로</a>
+                    <a href="javascript:void(0)" class="update">수정</a>
+                    <a href="javascript:void(0)" class="delete">삭제</a>
+                </section>
+            </article>
+            <section id="detail-title">
+                <h2>REST가 뭐에요?</h2>
+            </section>
+            <section id="detail-info">
+                <div class="profile">
+                    <div><img src="/app/assets/images/profile.png" width="15px"></div>
+                    <h6 class="writer">한동석</h6>
+                </div>
+                <hr>
+                <h6 id="detail-read-count">조회 75</h6>
+                <hr>
+                <h6 id="show-reply"><a href="javascript:showReply()">댓글 달기</a></h6>
+            </section>
+            <section id="reply-write-wrap">
+                <div class="profile">
+                    <div><img src="/app/assets/images/profile.png" width="15px"></div>
+                    <h6 class="writer">한동석</h6>
+                </div>
+                <textarea id="" cols="30" rows="1" placeholder="내 댓글"></textarea>
+                <button>작성완료</button>
+            </section>
+            <h5 id="content">
+                어노테이션 보니까 @RestController가 있던데 @Controller와 다른건가요?<br>
+                @Controller에서 @ResponseBody 붙여서 사용하는 게 @RestController랑 같다고 하는데,<br>
+                @RestController 사용할 때랑 @Controller에서 @ResponseBody 사용할 때의 차이좀 알려주세요.. 그리고 REST가 뭔지 몰라서 제가 이해를 못하는 것 같은데
+                REST도 알려주세요 ㅠㅠ
+            </h5>
+            <div>
+                <img src="/app/assets/images/preview.png" width="100%" class="file-list">
+            </div>
+            <section id="replies-wrap">
+                <ul>
+                    <li>
+                        <div>
+                            <section class="content-container">
+                                <div class="profile">
+                                    <div><img src="/app/assets/images/reply_profile.png" width="15px"></div>
+                                    <h6 class="writer">홍길동</h6>
+                                </div>
+                                <h4 class="title">
+                                    위키백과 가져옴~<br><br>
+                                    REST(Representational State Transfer)는 월드 와이드 웹과 같은 분산 하이퍼미디어 시스템을 위한 소프트웨어 아키텍처의 한
+                                    형식이다. 이 용어는 로이 필딩(Roy Fielding)의 2000년 박사학위 논문에서 소개되었다. 필딩은 HTTP의 주요 저자 중 한 사람이다. 이
+                                    개념은 네트워킹 문화에 널리 퍼졌다.<br>
+                                    엄격한 의미로 REST는 네트워크 아키텍처 원리의 모음이다. 여기서 '네트워크 아키텍처 원리'란 자원을 정의하고 자원에 대한 주소를 지정하는 방법
+                                    전반을 일컫는다. 간단한 의미로는, 웹 상의 자료를 HTTP위에서 SOAP이나 쿠키를 통한 세션 트랙킹 같은 별도의 전송 계층 없이 전송하기 위한 아주
+                                    간단한 인터페이스를 말한다.<br>
+                                    이 두 가지의 의미는 겹치는 부분과 충돌되는 부분이 있다. 필딩의 REST 아키텍처 형식을 따르면 HTTP나 WWW가 아닌 아주 커다란 소프트웨어
+                                    시스템을 설계하는 것도 가능하다. 또한, 리모트 프로시저 콜 대신에 간단한 XML과 HTTP 인터페이스를 이용해 설계하는 것도 가능하다.<br>
+                                    필딩의 REST 원리를 따르는 시스템은 종종 RESTful이란 용어로 지칭된다. 열정적인 REST 옹호자들은 스스로를 RESTafrians 이라고
+                                    부른다.
+                                </h4>
+                                <h6 clss="board-info">
+                                    <span class="date">방금 전</span>
+                                </h6>
+                            </section>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <section class="content-container">
+                                <div class="profile">
+                                    <div><img src="/app/assets/images/reply_profile.png" width="15px"></div>
+                                    <h6 class="writer">홍길동</h6>
+                                </div>
+                                <h4 class="title">@RestController 때려놓으면 ViewResolver 사용 못함</h4>
+                                <h6 clss="board-info">
+                                    <span class="date">1일 전</span>
+                                </h6>
+                            </section>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <section class="content-container">
+                                <div class="profile">
+                                    <div><img src="/app/assets/images/reply_profile.png" width="15px"></div>
+                                    <h6 class="writer">홍길동</h6>
+                                </div>
+                                <h4 class="title">어노테이션 하나씩 구글링 해보셈</h4>
+                                <section class="reply-update-wrap">
+                                    <textarea id="" cols="30" rows="1" placeholder="내 댓글"></textarea>
+                                    <div class="button-wrap">
+                                        <button class="update-done">작성완료</button>
+                                        <button class="calcel">취소</button>
+                                    </div>
+                                </section>
+                                <h6 clss="board-info">
+                                    <span class="date">2일 전</span>
+                                    <span class="date">·</span>
+                                    <span class="update">수정</span>
+                                    <span class="date">·</span>
+                                    <span class="delete">삭제</span>
+                                </h6>
+                            </section>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <section class="content-container">
+                                <div class="profile">
+                                    <div><img src="/app/assets/images/reply_profile.png" width="15px"></div>
+                                    <h6 class="writer">홍길동</h6>
+                                </div>
+                                <h4 class="title">
+                                    REST가 Representational State Transfer 축약어인데 페이지 요청보다는 데이터 요청에 가깝다고 생각하면 됨.
+                                </h4>
+                                <h6 clss="board-info">
+                                    <span class="date">3일 전</span>
+                                </h6>
+                            </section>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <section class="content-container">
+                                <div class="profile">
+                                    <div><img src="/app/assets/images/reply_profile.png" width="15px"></div>
+                                    <h6 class="writer">홍길동</h6>
+                                </div>
+                                <h4 class="title">REST 어렵긴 하지..</h4>
+                                <h6 clss="board-info">
+                                    <span class="date">6일 전</span>
+                                </h6>
+                            </section>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+        </section>
+    </main>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script src="https://rawgit.com/jackmoore/autosize/master/dist/autosize.min.js"></script>
+<script src="/app/assets/js/board/board.js"></script>
+
+</html>
