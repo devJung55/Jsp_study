@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 이 mapper의 소속을 member로 하겠다 -->
+<mapper namespace="member">
+	<!-- parameterType, resultType에 int은 클래스타입, _int은 기본 타입 -->
+	<select id="checkId" parameterType="string" resultType="long">
+		select member_id from tbl_member where member_identification = #{memberIdentification};
+	</select>
+
+	<insert id="join" parameterType="memberVO">
+		insert into tbl_member
+		(member_name, member_birth, member_identification, member_password)
+		values(#{memberName}, #{memberBirth}, #{memberIdentification}, #{memberPassword});
+	</insert>
+
+	<!-- parameterType는 무조건 하나만 전달 해야하기 때문에  매개변수가 두개 이상이라면 map이나 vo 객체에 담아준다. -->	
+	<select id="login" parameterType="map" resultType="Long">
+		select member_id from tbl_member 
+		where member_identification = #{memberIdentification} and member_password = #{memberPassword}
+	</select>
+	
+	<select id="selectAll" resultType="memberVO">
+		select member_id, member_name, member_identification, member_password from tbl_member
+	</select>
+	
+	<delete id="delete">
+		delete from tbl_member
+		where member_identification = #{memberIdentification};
+	</delete>
+	
+	<update id="update" parameterType="memberVO">
+		update tbl_member
+		set member_name = #{memberName}
+		where member_id = #{memberId}
+	</update>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
