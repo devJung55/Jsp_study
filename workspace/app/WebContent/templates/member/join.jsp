@@ -37,7 +37,7 @@
                     <h5>
                         스프링부트에 회원으로 이미 등록되어 있다면<br>
                         <span>
-                            <a href="javascript:void(0)">로그인</a>을 통해 서비스를 이용해주세요.
+                            <a href="javascript:location.href='${pageContext.request.contextPath}/login.member'">로그인</a>을 통해 서비스를 이용해주세요.
                         </span>
                     </h5>
                 </div>
@@ -52,7 +52,7 @@
                         회원 정보 입력 후, 가입을 완료해주세요!
                     </h3>
                 </div>
-                <form action="" name="join">
+                <form action="${pageContext.request.contextPath}/joinOk.member" name="join" method="post">
                     <div class="term">
                         <div id="check-all-wrap">
                             <label class="checkbox-all-wrap">
@@ -178,7 +178,7 @@
                         <div class="info-container">
                             <label>이름</label>
                             <span>
-                                <input type="text" id="name" autocomplete="off" placeholder="영문 혹은 한글, 2~20자">
+                                <input type="text" id="name" name="memberName" autocomplete="off" placeholder="영문 혹은 한글, 2~20자">
                                 <img width="16px">
                             </span>
                             <p class="help"></p>
@@ -186,7 +186,7 @@
                         <div class="info-container">
                             <label>생년월일</label>
                             <span>
-                                <input type="text" id="birth" autocomplete="off" placeholder="예) 19990101">
+                                <input type="text" id="birth" name="memberBirth" autocomplete="off" placeholder="예) 19990101">
                                 <img width="16px">
                             </span>
                             <p class="help"></p>
@@ -194,7 +194,7 @@
                         <div class="info-container">
                             <label>휴대폰 번호</label>
                             <span>
-                                <input type="text" id="phone" autocomplete="off" placeholder="예) 01000000000">
+                                <input type="text" id="phone" name="memberPhone" autocomplete="off" placeholder="예) 01000000000">
                                 <img width="16px">
                             </span>
                             <p class="help"></p>
@@ -216,7 +216,7 @@
                         <div class="info-container info-container-first">
                             <label>아이디</label>
                             <span>
-                                <input type="text" id="id" autocomplete="off" placeholder="영문 혹은 영문+숫자, 4~20자">
+                                <input type="text" id="id" name="memberIdentification" autocomplete="off" placeholder="영문 혹은 영문+숫자, 4~20자">
                                 <img width="16px">
                             </span>
                             <p class="help"></p>
@@ -225,7 +225,7 @@
                             <label>비밀번호</label>
                             <span>
                                 <div class="password">
-                                    <input type="password" id="password" placeholder="영어, 숫자, 특수문자 중 2가지 이상 10~20자">
+                                    <input type="password" id="password" name="memberPassword" placeholder="영어, 숫자, 특수문자 중 2가지 이상 10~20자">
                                     <img width="16px">
                                     <p class="help"></p>
                                 </div>
@@ -249,6 +249,7 @@
                                         <input type="text" autocomplete="off" placeholder="이메일 뒷자리">
                                         <img width="16px">
                                     </div>
+                                    <input type="hidden" name="memberEmail">
                                 </div>
                             </span>
                             <p class="help"></p>
@@ -276,6 +277,7 @@
     </main>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script>let contextPath = "${pageContext.request.contextPath}"</script>
 <script src="${pageContext.request.contextPath}/static/js/member/check.js"></script>
 <script src="${pageContext.request.contextPath}/static/js/modal/modal.js"></script>
 <script src="${pageContext.request.contextPath}/static/js/member/join.js"></script>

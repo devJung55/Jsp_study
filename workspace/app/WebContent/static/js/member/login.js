@@ -1,18 +1,18 @@
-const $checkSaveId = $("input[name='saveId']");
+const $checkAutoLogin = $("input[name='auto-login']");
 const $id = $("input#id");
 const $password = $("input#password");
 
-$checkSaveId.on("change", function(){
+$checkAutoLogin.on("change", function(){
     let isChecked = $(this).prop("checked");
-    isChecked ? checkedSaveId() : notCheckedSaveId();
+    isChecked ? checkedAutoLogin() : notCheckedAutoLogin();
 });
 
-function checkedSaveId(){
+function checkedAutoLogin(){
     $("#check-save-id span.checkbox").css("border-color", "rgb(235 124 120)");
     $("#check-save-id span.checkbox").css("background-color", "rgb(235 124 120)");
 }
 
-function notCheckedSaveId(){
+function notCheckedAutoLogin(){
     $("#check-save-id span.checkbox").css("border-color", "");
     $("#check-save-id span.checkbox").css("background-color", "");
 }
@@ -30,8 +30,10 @@ function send(){
         $password.next().fadeIn(500);
         return;
     }
+	/*비밀번호 암호화*/
+	$password.val(btoa($password.val()));
 
-    // submit();
+    document.login.submit();
 }
 
 $id.on("blur", function(){

@@ -37,11 +37,11 @@
                         <img src="${pageContext.request.contextPath}/static/images/springboot.svg">
                     </div>
                 </div>
-                <form action="" name="login">
+                <form action="${pageContext.request.contextPath}/loginOk.member" name="login" method="post">
                     <div class="login">
                         <div class="info-container info-container-first">
                             <span>
-                                <input type="text" id="id" autocomplete="off" placeholder="아이디">
+                                <input type="text" id="id" name="memberIdentification" autocomplete="off" placeholder="아이디">
                                 <img width="16px">
                             </span>
                             <p class="help"></p>
@@ -49,7 +49,7 @@
                         <div class="info-container">
                             <span>
                                 <div class="password">
-                                    <input type="password" id="password" placeholder="비밀번호">
+                                    <input type="password" id="password" name="memberPassword" placeholder="비밀번호">
                                     <img width="16px">
                                     <p class="help"></p>
                                 </div>
@@ -59,17 +59,17 @@
                             <div id="check-save-id">
                                 <label class="check-save-id-wrap">
                                     <section>
-                                        <input type="checkbox" name="saveId">
+                                        <input type="checkbox" name="auto-login" value="true">
                                         <span class="checkbox">
                                             <img src="${pageContext.request.contextPath}/static/images/check_all.png" width="15px">
                                         </span>
-                                        <p class="h5">아이디 저장</p>
+                                        <p class="h5">로그인 상태 유지</p>
                                     </section>
                                 </label>
                             </div>
                         </div>
                         <button type="button" class="login" onclick="send()">로그인</button>
-                        <button type="button" class="join" onclick="send()">회원가입</button>
+                        <button type="button" class="join" onclick="location.href='${pageContext.request.contextPath}/join.member'">회원가입</button>
                     </div>
                 </form>
             </article>
@@ -77,9 +77,14 @@
     </main>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
-<script src="${pageContext.request.contextPath}/static/js/modal/modal.js"></script>
 <script src="${pageContext.request.contextPath}/static/js/member/login.js"></script>
+<script src="${pageContext.request.contextPath}/static/js/modal/modal.js"></script>
 </html>
+<c:if test="${not empty param.login}">
+	<script>
+		showWarnModal("아이디 또는 비밀번호를<br>확인해주세요");
+	</script>
+</c:if>	
 
 
 

@@ -1,12 +1,6 @@
 $("div#back").hide();
 $("div.info").hide();
 $("div.join").hide();
-
-window.addEventListener('beforeunload', (event) => {
-    event.preventDefault();
-    event.returnValue = "";
-});
-
 let step = 1;
 
 // term
@@ -111,6 +105,7 @@ function showHelp($input, fileName){
         $input.css("background", "rgb(255, 255, 255)");
         $input.next().attr("width", "18px");
     }else {
+		console.log("들어옴");
         $input.css("border", "1px solid rgb(255, 64, 62)");
         $input.css("background", "rgb(255, 246, 246)");
     }
@@ -200,12 +195,37 @@ $joinInputs.on("blur", function(){
 
     if(!joinCheck){
         $joinHelp.eq(i).text(joinRegexMessages[i]);
+		$joinHelp.eq(i).css('color', 'red')
         showHelp($(this), "error.png");
         return;
     }
 
-    $joinHelp.eq(i).text("");
-    showHelp($(this), "pass.png");
+	if(i != 0) {
+	    $joinHelp.eq(i).text("");
+	    showHelp($(this), "pass.png");
+	}else{
+		/*중복 검사*/
+		$.ajax({
+			url: contextPath + "/checkIdOk.member",
+			data: {memberIdentification: value},
+			success: function(result){
+				let message, icon;
+				result = JSON.parse(result);
+				if(result.check){
+					message = "중복된 아이디입니다.";
+					icon = "error.png";
+					$joinHelp.eq(i).css('color', 'red')
+				}else{
+					message = "사용 가능한 아이디입니다.";
+					$joinHelp.eq(i).css('color', '#2bb673')
+					icon = "pass.png";
+				}
+				$joinHelp.eq(i).text(message);
+	    		showHelp($joinInputs.eq(i), icon);
+				joinCheckAll[i] = !result.check
+			}
+		});
+	}
 });
 
 $("select.email").on("change", function(){
@@ -225,7 +245,15 @@ function send(){
         showWarnModal(modalMessage);
         return;
     }
-    // submit();
+	
+	/*비밀번호 암호화*/
+	$("input[name='memberPassword']").val(btoa($("input[name='memberPassword']").val()));
+	$("#password-check").val(btoa($("#password-check").val()));
+
+	/*이메일 합치기*/
+	$("input[name='memberEmail']").val($("div.email-first input").val() + '@' + $("div.email-last input").val())
+
+    document.join.submit();
 }
 
 $("div#back").click(function(){

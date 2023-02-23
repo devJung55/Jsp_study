@@ -2,6 +2,19 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="member">
+	<select id="checkId" parameterType="string" resultType="long">
+		select member_id from tbl_member where member_identification = #{memberIdentification}
+	</select>
+	
+	<insert id="join" parameterType="memberVO">
+		insert into tbl_member(member_identification, member_password, member_name, member_birth, member_phone, member_email)
+		values(#{memberIdentification}, #{memberPassword}, #{memberName}, date_format(#{memberBirth}, '%Y-%m-%d'), #{memberPhone}, #{memberEmail})
+	</insert>
+	
+	<select id="login" parameterType="map" resultType="long">
+		select member_id from tbl_member 
+		where member_identification = #{memberIdentification} and member_password = #{memberPassword}
+	</select>
 </mapper>
 
 

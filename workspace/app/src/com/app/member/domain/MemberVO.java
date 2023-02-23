@@ -5,12 +5,9 @@ public class MemberVO {
 	private String memberIdentification;
 	private String memberPassword;
 	private String memberName;
-	private int memberAge;
-	private String memberGender;
+	private String memberBirth;
+	private String memberPhone;
 	private String memberEmail;
-	private String memberZipcode;
-	private String memberAddress;
-	private String memberAddressDetail;
 	
 	public MemberVO() {;}
 
@@ -46,20 +43,20 @@ public class MemberVO {
 		this.memberName = memberName;
 	}
 
-	public int getMemberAge() {
-		return memberAge;
+	public String getMemberBirth() {
+		return memberBirth;
 	}
 
-	public void setMemberAge(int memberAge) {
-		this.memberAge = memberAge;
+	public void setMemberBirth(String memberBirth) {
+		this.memberBirth = memberBirth;
 	}
 
-	public String getMemberGender() {
-		return memberGender;
+	public String getMemberPhone() {
+		return memberPhone;
 	}
 
-	public void setMemberGender(String memberGender) {
-		this.memberGender = memberGender;
+	public void setMemberPhone(String memberPhone) {
+		this.memberPhone = memberPhone;
 	}
 
 	public String getMemberEmail() {
@@ -70,36 +67,11 @@ public class MemberVO {
 		this.memberEmail = memberEmail;
 	}
 
-	public String getMemberZipcode() {
-		return memberZipcode;
-	}
-
-	public void setMemberZipcode(String memberZipcode) {
-		this.memberZipcode = memberZipcode;
-	}
-
-	public String getMemberAddress() {
-		return memberAddress;
-	}
-
-	public void setMemberAddress(String memberAddress) {
-		this.memberAddress = memberAddress;
-	}
-
-	public String getMemberAddressDetail() {
-		return memberAddressDetail;
-	}
-
-	public void setMemberAddressDetail(String memberAddressDetail) {
-		this.memberAddressDetail = memberAddressDetail;
-	}
-
 	@Override
 	public String toString() {
 		return "MemberVO [memberId=" + memberId + ", memberIdentification=" + memberIdentification + ", memberPassword="
-				+ memberPassword + ", memberName=" + memberName + ", memberAge=" + memberAge + ", memberGender="
-				+ memberGender + ", memberEmail=" + memberEmail + ", memberZipcode=" + memberZipcode
-				+ ", memberAddress=" + memberAddress + ", memberAddressDetail=" + memberAddressDetail + "]";
+				+ memberPassword + ", memberName=" + memberName + ", memberBirth=" + memberBirth + ", memberPhone="
+				+ memberPhone + ", memberEmail=" + memberEmail + "]";
 	}
 
 	@Override
