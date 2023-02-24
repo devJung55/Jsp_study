@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,8 +8,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>상세보기</title>
-    <link rel="shortcut icon" href="/app/assets/images/favicon.png">
-    <link rel="stylesheet" href="/app/assets/css/board/board.css">
+    <link rel="shortcut icon" href="${pageContext.request.contextPath}/static/images/favicon.png">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/board/board.css">
 </head>
 
 <body>
@@ -19,14 +21,14 @@
                         <form action="">
                             <div class="search-container">
                                 <input type="text" autocomplete="off">
-                                <button type="button" onclick=""><img src="/app/assets/images/search.png"
+                                <button type="button" onclick=""><img src="${pageContext.request.contextPath}/static/images/search.png"
                                         width="20px"></button>
                             </div>
                         </form>
                     </div>
                 </div>
                 <div id="logo">
-                    <img src="/app/assets/images/logo.png">
+                    <img src="${pageContext.request.contextPath}/static/images/logo.png">
                 </div>
                 <div id="category">
                     <div>
@@ -39,7 +41,7 @@
             </div>
         </header>
         <section id="board-banner">
-            <div><a href="javascript:void(0)"><img src="/app/assets/images/board_banner.png"></a></div>
+            <div><a href="javascript:void(0)"><img src="${pageContext.request.contextPath}/static/images/board_banner.png"></a></div>
         </section>
         <section id="info-wrap">
             <article id="info-container">
@@ -55,7 +57,7 @@
             </section>
             <section id="detail-info">
                 <div class="profile">
-                    <div><img src="/app/assets/images/profile.png" width="15px"></div>
+                    <div><img src="${pageContext.request.contextPath}/static/images/profile.png" width="15px"></div>
                     <h6 class="writer">한동석</h6>
                 </div>
                 <hr>
@@ -65,7 +67,7 @@
             </section>
             <section id="reply-write-wrap">
                 <div class="profile">
-                    <div><img src="/app/assets/images/profile.png" width="15px"></div>
+                    <div><img src="${pageContext.request.contextPath}/static/images/profile.png" width="15px"></div>
                     <h6 class="writer">한동석</h6>
                 </div>
                 <textarea id="" cols="30" rows="1" placeholder="내 댓글"></textarea>
@@ -78,7 +80,7 @@
                 REST도 알려주세요 ㅠㅠ
             </h5>
             <div>
-                <img src="/app/assets/images/preview.png" width="100%" class="file-list">
+                <img src="${pageContext.request.contextPath}/static/images/preview.png" width="100%" class="file-list">
             </div>
             <section id="replies-wrap">
                 <ul>
@@ -86,7 +88,7 @@
                         <div>
                             <section class="content-container">
                                 <div class="profile">
-                                    <div><img src="/app/assets/images/reply_profile.png" width="15px"></div>
+                                    <div><img src="${pageContext.request.contextPath}/static/images/reply_profile.png" width="15px"></div>
                                     <h6 class="writer">홍길동</h6>
                                 </div>
                                 <h4 class="title">
@@ -112,7 +114,7 @@
                         <div>
                             <section class="content-container">
                                 <div class="profile">
-                                    <div><img src="/app/assets/images/reply_profile.png" width="15px"></div>
+                                    <div><img src="${pageContext.request.contextPath}/static/images/reply_profile.png" width="15px"></div>
                                     <h6 class="writer">홍길동</h6>
                                 </div>
                                 <h4 class="title">@RestController 때려놓으면 ViewResolver 사용 못함</h4>
@@ -126,7 +128,7 @@
                         <div>
                             <section class="content-container">
                                 <div class="profile">
-                                    <div><img src="/app/assets/images/reply_profile.png" width="15px"></div>
+                                    <div><img src="${pageContext.request.contextPath}/static/images/reply_profile.png" width="15px"></div>
                                     <h6 class="writer">홍길동</h6>
                                 </div>
                                 <h4 class="title">어노테이션 하나씩 구글링 해보셈</h4>
@@ -151,7 +153,7 @@
                         <div>
                             <section class="content-container">
                                 <div class="profile">
-                                    <div><img src="/app/assets/images/reply_profile.png" width="15px"></div>
+                                    <div><img src="${pageContext.request.contextPath}/static/images/reply_profile.png" width="15px"></div>
                                     <h6 class="writer">홍길동</h6>
                                 </div>
                                 <h4 class="title">
@@ -167,7 +169,7 @@
                         <div>
                             <section class="content-container">
                                 <div class="profile">
-                                    <div><img src="/app/assets/images/reply_profile.png" width="15px"></div>
+                                    <div><img src="${pageContext.request.contextPath}/static/images/reply_profile.png" width="15px"></div>
                                     <h6 class="writer">홍길동</h6>
                                 </div>
                                 <h4 class="title">REST 어렵긴 하지..</h4>
@@ -184,6 +186,6 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script src="https://rawgit.com/jackmoore/autosize/master/dist/autosize.min.js"></script>
-<script src="/app/assets/js/board/board.js"></script>
+<script src="${pageContext.request.contextPath}/static/js/board/board.js"></script>
 
 </html>

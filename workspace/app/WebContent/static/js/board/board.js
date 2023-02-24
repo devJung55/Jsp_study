@@ -108,3 +108,84 @@ function notCheckedSaveId(){
     $("#check-agree span.checkbox").css("border-color", "");
     $("#check-agree span.checkbox").css("background-color", "");
 }
+
+/*게시글 목록*/
+showList();
+
+function showList(){
+	boards = JSON.parse(boards);
+	const $ul = $("#content-wrap ul");
+	let text = "";
+	boards.forEach(board => {
+		console.log(board);
+		text += `
+			<li>
+		        <div>
+		            <a href="javascript:void(0)">
+		                <section class="content-container">
+		                    <div class="profile">
+		                        <div><img src="${contextPath}/static/images/profile.png" width="15px"></div>
+		                        <h6 class="writer">${board.memberName}</h6>
+		                    </div>
+		                    <h4 class="title">${board.boardTitle}</h4>
+		                    <h6 clss="board-info">
+		                        <span class="read-count">조회 ${board.boardReadCount}</span>
+		                        <span>·</span>
+		                        <span class="date">`+ elapsedTime(board.boardRegisterDate) +`</span>
+		                    </h6>
+		                </section>
+			`;
+			/*첨부파일 있을 경우 img 태그 추가*/
+						/*<img src="" class="preview">*/
+			text += `
+		            </a>
+		        </div>
+		    </li>
+			`;
+	});
+	$ul.append(text);
+}
+
+function elapsedTime(date) {
+  const start = new Date(date);
+  const end = new Date();
+
+  const diff = (end - start) / 1000;
+  
+  const times = [
+    { name: '년', milliSeconds: 60 * 60 * 24 * 365 },
+    { name: '개월', milliSeconds: 60 * 60 * 24 * 30 },
+    { name: '일', milliSeconds: 60 * 60 * 24 },
+    { name: '시간', milliSeconds: 60 * 60 },
+    { name: '분', milliSeconds: 60 },
+  ];
+
+  for (const value of times) {
+    const betweenTime = Math.floor(diff / value.milliSeconds);
+
+    if (betweenTime > 0) {
+      return `${betweenTime}${value.name} 전`;
+    }
+  }
+  return '방금 전';
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

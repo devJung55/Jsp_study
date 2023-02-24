@@ -19,4 +19,14 @@
   	<servlet-name>member</servlet-name>
   	<url-pattern>*.member</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>board</servlet-name>
+  	<servlet-class>com.app.board.BoardFrontController</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>board</servlet-name>
+  	<url-pattern>*.board</url-pattern>
+  </servlet-mapping>
 </web-app>

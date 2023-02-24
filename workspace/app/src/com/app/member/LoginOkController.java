@@ -39,7 +39,7 @@ public class LoginOkController implements Action {
 				resp.addCookie(memberPasswordCookie);
 			}
 			session.setAttribute("memberId", memberId);
-			path = req.getContextPath() + "/board/list.board";
+			path = req.getContextPath() + "/board/listOk.board";
 		}else {
 			path = req.getContextPath() + "/login.member?login=false";
 		}
