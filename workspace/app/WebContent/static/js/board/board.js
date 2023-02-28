@@ -109,42 +109,14 @@ function notCheckedSaveId(){
     $("#check-agree span.checkbox").css("background-color", "");
 }
 
-/*게시글 목록*/
-showList();
+/*정렬 이벤트 및 스타일 변경*/
+const $orders = $("section.order a");
+$orders.on("click", function(e){
+	let i = $orders.index($(this));
+	location.href=`${contextPath}/board/listOk.board?sort=${i == 0 ? 'recent' : 'popular'}&type=${type}&keyword=${keyword}`;
+});
 
-function showList(){
-	boards = JSON.parse(boards);
-	const $ul = $("#content-wrap ul");
-	let text = "";
-	boards.forEach(board => {
-		console.log(board);
-		text += `
-			<li>
-		        <div>
-		            <a href="javascript:void(0)">
-		                <section class="content-container">
-		                    <div class="profile">
-		                        <div><img src="${contextPath}/static/images/profile.png" width="15px"></div>
-		                        <h6 class="writer">${board.memberName}</h6>
-		                    </div>
-		                    <h4 class="title">${board.boardTitle}</h4>
-		                    <h6 clss="board-info">
-		                        <span class="read-count">조회 ${board.boardReadCount}</span>
-		                        <span>·</span>
-		                        <span class="date">`+ elapsedTime(board.boardRegisterDate) +`</span>
-		                    </h6>
-		                </section>
-			`;
-			/*첨부파일 있을 경우 img 태그 추가*/
-						/*<img src="" class="preview">*/
-			text += `
-		            </a>
-		        </div>
-		    </li>
-			`;
-	});
-	$ul.append(text);
-}
+
 
 function elapsedTime(date) {
   const start = new Date(date);

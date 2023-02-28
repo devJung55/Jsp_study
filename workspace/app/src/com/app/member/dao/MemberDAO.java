@@ -33,6 +33,11 @@ public class MemberDAO {
 		return sqlSession.selectOne("member.login", loginMap);
 	}
 	
+//	이름 조회
+	public String selectName(Long memberId) {
+		return sqlSession.selectOne("member.selectName", memberId);
+	}
+	
 }
 
 

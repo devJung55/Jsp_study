@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.app.Result;
+import com.app.board.dao.BoardDAO;
+import com.app.member.dao.MemberDAO;
 
 public class BoardFrontController extends HttpServlet {
 
@@ -21,15 +23,34 @@ public class BoardFrontController extends HttpServlet {
 		if(target.equals("/board/listOk")) {
 			result = new ListOkController().execute(req, resp);
 			
-		}else if(target.equals("/detailOk")){
+		}else if(target.equals("/board/detailOk")){
+			result = new DetailOkController().execute(req, resp);
 			
-		}else if(target.equals("/write")){
+		}else if(target.equals("/board/write") || target.equals("/board/update")){
+			result = new Result();
+			MemberDAO memberDAO = new MemberDAO();
+			BoardDAO boardDAO = new BoardDAO();
 			
-		}else if(target.equals("/writeOk")){
+			if(target.equals("/board/update")) {
+				req.setAttribute("board", boardDAO.select(Long.valueOf(req.getParameter("boardId"))));
+			}
 			
-		}else if(target.equals("/update")){
+			req.setAttribute("page", req.getParameter("page"));
+			req.setAttribute("sort", req.getParameter("sort"));
+			req.setAttribute("type", req.getParameter("type"));
+			req.setAttribute("keyword", req.getParameter("keyword"));
+			req.setAttribute("memberName", memberDAO.selectName((Long)req.getSession().getAttribute("memberId")));
 			
-		}else if(target.equals("/updateOk")){
+			result.setPath("/templates/board/" + (target.equals("/board/write") ? "write.jsp" : "update.jsp"));
+			
+		}else if(target.equals("/board/writeOk")){
+			result = new WriteOkController().execute(req, resp);
+			
+		}else if(target.equals("/board/updateOk")){
+			result = new UpdateOkController().execute(req, resp);
+			
+		}else if(target.equals("/board/deleteOk")){
+			result = new DeleteOkController().execute(req, resp);
 			
 		}else {
 			

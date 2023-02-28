@@ -7,6 +7,7 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 
 import com.app.board.domain.BoardDTO;
+import com.app.board.domain.BoardVO;
 import com.app.mybatis.config.MyBatisConfig;
 
 public class BoardDAO {
@@ -22,8 +23,33 @@ public class BoardDAO {
 	}
 	
 //	게시글 총 개수
-	public Long getTotal() {
-		return sqlSession.selectOne("board.getTotal");
+	public Long getTotal(Map<String, Object> searchMap) {
+		return sqlSession.selectOne("board.getTotal", searchMap);
+	}
+	
+//	게시글 조회
+	public BoardDTO select(Long boardId) {
+		return sqlSession.selectOne("board.select", boardId);
+	}
+	
+//	게시글 추가
+	public void insert(BoardVO boardVO) {
+		sqlSession.insert("board.insert", boardVO);
+	}
+	
+//	현재 시퀀스 조회
+	public Long getCurrentSequence() {
+		return sqlSession.selectOne("board.getCurrentSequence");
+	}
+	
+//	게시글 수정
+	public void update(BoardVO boardVO) {
+		System.out.println(boardVO);
+		sqlSession.update("board.update", boardVO);
+	}
+
+	public void delete(Long boardId) {
+		sqlSession.delete("board.delete", boardId);
 	}
 	
 }

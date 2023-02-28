@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,75 +15,60 @@
 
 <body>
     <main id="board">
-        <header>
-            <div id="header">
-                <div id="search">
-                    <div class="search-wrap">
-                        <form action="">
-                            <div class="search-container">
-                                <input type="text" autocomplete="off">
-                                <button type="button" onclick=""><img src="${pageContext.request.contextPath}/static/images/search.png"
-                                        width="20px"></button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <div id="logo">
-                    <img src="${pageContext.request.contextPath}/static/images/logo.png">
-                </div>
-                <div id="category">
-                    <div>
-                        <a href="javascript:void(0)">로그인</a>
-                    </div>
-                    <div>
-                        <a href="javascript:void(0)">회원가입</a>
-                    </div>
-                </div>
-            </div>
-        </header>
+        <jsp:include page="../fix/header.jsp"/>
         <section id="board-banner">
             <div><a href="javascript:void(0)"><img src="${pageContext.request.contextPath}/static/images/board_banner.png"></a></div>
         </section>
         <section id="info-wrap">
             <article id="info-container">
                 <h6 class="info">게시글 상세보기</h6>
-                <section class="order">
-                    <a href="javascript:void(0)">목록으로</a>
-                    <a href="javascript:void(0)" class="update">수정</a>
-                    <a href="javascript:void(0)" class="delete">삭제</a>
+                <section class="move-page">
+                    <a href="javascript:location.href='${pageContext.request.contextPath}/board/listOk.board?page=${page}&sort=${sort}&type=${empty type ? 'null' : type}&keyword=${keyword}'">목록으로</a>
+                    <a href="javascript:location.href='${pageContext.request.contextPath}/board/update.board?page=${page}&sort=${sort}&type=${empty type ? 'null' : type}&keyword=${keyword}&boardId=${board.boardId}'" class="update">수정</a>
+                    <a href="javascript:location.href='${pageContext.request.contextPath}/board/deleteOk.board?page=${page}&sort=${sort}&type=${empty type ? 'null' : type}&keyword=${keyword}&boardId=${board.boardId}'" class="delete">삭제</a>
                 </section>
             </article>
             <section id="detail-title">
-                <h2>REST가 뭐에요?</h2>
+                <h2>${board.boardTitle}</h2>
             </section>
             <section id="detail-info">
                 <div class="profile">
                     <div><img src="${pageContext.request.contextPath}/static/images/profile.png" width="15px"></div>
-                    <h6 class="writer">한동석</h6>
+                    <h6 class="writer">${board.memberName}</h6>
                 </div>
                 <hr>
-                <h6 id="detail-read-count">조회 75</h6>
+                <h6 id="detail-read-count">조회 ${board.boardReadCount}</h6>
                 <hr>
                 <h6 id="show-reply"><a href="javascript:showReply()">댓글 달기</a></h6>
             </section>
             <section id="reply-write-wrap">
                 <div class="profile">
                     <div><img src="${pageContext.request.contextPath}/static/images/profile.png" width="15px"></div>
-                    <h6 class="writer">한동석</h6>
+                    <h6 class="writer">${board.memberName}</h6>
                 </div>
                 <textarea id="" cols="30" rows="1" placeholder="내 댓글"></textarea>
                 <button>작성완료</button>
             </section>
             <h5 id="content">
-                어노테이션 보니까 @RestController가 있던데 @Controller와 다른건가요?<br>
-                @Controller에서 @ResponseBody 붙여서 사용하는 게 @RestController랑 같다고 하는데,<br>
-                @RestController 사용할 때랑 @Controller에서 @ResponseBody 사용할 때의 차이좀 알려주세요.. 그리고 REST가 뭔지 몰라서 제가 이해를 못하는 것 같은데
-                REST도 알려주세요 ㅠㅠ
+               	${board.boardContent}
             </h5>
-            <div>
-                <img src="${pageContext.request.contextPath}/static/images/preview.png" width="100%" class="file-list">
-            </div>
             <section id="replies-wrap">
+                <ul>
+                    <li>
+                    	<h4 class="title">
+                    		댓글이 없습니다.
+                    	</h4>
+                    </li>
+                </ul>
+            </section>
+            <div>
+            	<c:forEach var="file" items="${files}">
+            		<a href="${pageContext.request.contextPath}/file/download.file?fileSystemName=${file.fileSystemName}&fileOriginalName=${file.fileOriginalName}">
+                		<img src="${pageContext.request.contextPath}/upload/${file.fileSystemName}" width="100%" class="file-list">
+                	</a>
+                </c:forEach>
+            </div>
+            <%-- <section id="replies-wrap">
                 <ul>
                     <li>
                         <div>
@@ -180,12 +166,15 @@
                         </div>
                     </li>
                 </ul>
-            </section>
+            </section> --%>
         </section>
     </main>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script src="https://rawgit.com/jackmoore/autosize/master/dist/autosize.min.js"></script>
+<script>
+	let contextPath = "${pageContext.request.contextPath}";
+</script>
 <script src="${pageContext.request.contextPath}/static/js/board/board.js"></script>
 
 </html>

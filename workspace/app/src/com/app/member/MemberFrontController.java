@@ -19,7 +19,7 @@ public class MemberFrontController extends HttpServlet {
 		String target = uri.replace(contextPath, "").split("\\.")[0];
 		Result result = null;
 		
-		if(target.equals("/join")) {
+		if(target.equals("join")) {
 			result = new Result();
 			result.setPath("/templates/member/join.jsp");
 			

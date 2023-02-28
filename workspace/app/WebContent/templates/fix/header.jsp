@@ -17,12 +17,32 @@
         <div id="logo">
             <img src="${pageContext.request.contextPath}/static/images/logo.png">
         </div>
+        <div id="search">
+            <div class="search-wrap">
+                <form action="${pageContext.request.contextPath}/board/listOk.board" name="search-form">
+			        <div>
+			        	<select name="type">
+			        		<option value="title&content&writer" ${type=='null' or type=='title&content&writer' ? 'selected' : '' }>전체</option>
+			        		<option value="title" ${type=='title' ? 'selected': ''}>제목</option>
+			        		<option value="content" ${type=='content' ? 'selected': ''}>내용</option>
+			        		<option value="writer" ${type=='writer' ? 'selected': ''}>작성자</option>
+			        		<option value="content&writer" ${type=='content&writer' ? 'selected': ''}>내용 또는 작성자</option>
+			        	</select>
+			        </div>
+                    <div class="search-container">
+                        <input type="text" autocomplete="off" name="keyword" value="${keyword}">
+                        <button type="submit" onclick=""><img src="${pageContext.request.contextPath}/static/images/search.png"
+                                width="20px"></button>
+                    </div>
+                </form>
+            </div>
+        </div>
         <div id="category">
             <div class="profile">
                 <img src="${pageContext.request.contextPath}/static/images/default-profile.png" width="30">
             </div>
             <div>
-                <a href="">로그아웃</a>
+                <a href="${pageContext.request.contextPath}/logout.member">로그아웃</a>
             </div>
         </div>
     </div>

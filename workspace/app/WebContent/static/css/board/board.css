@@ -1,4 +1,4 @@
-@charset "utf-8";
+	@charset "utf-8";
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;500&display=swap');
 
 * {
@@ -89,8 +89,7 @@ div#search {
 }
 
 div.search-wrap {
-    position: relative;
-    left: 16px;
+	left: 16px;
     width: 100%;
     padding: 16px;
     border-radius: 8px;
@@ -100,7 +99,7 @@ div.search-wrap {
 div.search-container {
     display: flex;
     align-items: center;
-    width: 288px;
+    width: 310px;
     position: relative;
     padding: 12px 18px;
     border: 1px solid rgba(0, 0, 0, 0.1);
@@ -164,14 +163,18 @@ h6.info {
     font-weight: 500;
 }
 
-section.order {
+section.order, section.move-page {
     display: flex;
     font-weight: 500;
     font-size: 15px;
     color: rgb(126, 128, 130);
 }
 
-section.order > a + a {
+section.order a, section.move-page a {
+	cursor: pointer;
+}
+
+section.order > a + a, section.move-page > a + a {
     margin-left: 16px;
 }
 
