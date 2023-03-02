@@ -8,7 +8,7 @@ import com.app.file.domain.FileVO;
 import com.app.mybatis.config.MyBatisConfig;
 
 public class FileDAO {
-public SqlSession sqlSession;
+	public SqlSession sqlSession;
 	
 	public FileDAO() {
 		sqlSession = MyBatisConfig.getSqlSessionFactory().openSession(true);

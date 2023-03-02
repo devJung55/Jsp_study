@@ -46,20 +46,21 @@
                     <div><img src="${pageContext.request.contextPath}/static/images/profile.png" width="15px"></div>
                     <h6 class="writer">${board.memberName}</h6>
                 </div>
-                <textarea id="" cols="30" rows="1" placeholder="내 댓글"></textarea>
-                <button>작성완료</button>
+                <textarea cols="30" rows="1" placeholder="내 댓글" name="replyContent"></textarea>
+                <button id="write-ok">작성완료</button>
             </section>
             <h5 id="content">
                	${board.boardContent}
             </h5>
             <section id="replies-wrap">
-                <ul>
-                    <li>
-                    	<h4 class="title">
-                    		댓글이 없습니다.
-                    	</h4>
-                    </li>
-                </ul>
+	            <div class="logo-area">
+					<img src="${pageContext.request.contextPath}/static/images/dimmed.png" class="infinite_rotating_logo" width="48">
+				</div>
+                <ul></ul>
+                <button type="button" id="more-replies">
+                	<div>더보기</div>
+                	<div><img src="${pageContext.request.contextPath}/static/images/plus.png" width="24"></div>
+                </button>
             </section>
             <div>
             	<c:forEach var="file" items="${files}">
@@ -68,105 +69,6 @@
                 	</a>
                 </c:forEach>
             </div>
-            <%-- <section id="replies-wrap">
-                <ul>
-                    <li>
-                        <div>
-                            <section class="content-container">
-                                <div class="profile">
-                                    <div><img src="${pageContext.request.contextPath}/static/images/reply_profile.png" width="15px"></div>
-                                    <h6 class="writer">홍길동</h6>
-                                </div>
-                                <h4 class="title">
-                                    위키백과 가져옴~<br><br>
-                                    REST(Representational State Transfer)는 월드 와이드 웹과 같은 분산 하이퍼미디어 시스템을 위한 소프트웨어 아키텍처의 한
-                                    형식이다. 이 용어는 로이 필딩(Roy Fielding)의 2000년 박사학위 논문에서 소개되었다. 필딩은 HTTP의 주요 저자 중 한 사람이다. 이
-                                    개념은 네트워킹 문화에 널리 퍼졌다.<br>
-                                    엄격한 의미로 REST는 네트워크 아키텍처 원리의 모음이다. 여기서 '네트워크 아키텍처 원리'란 자원을 정의하고 자원에 대한 주소를 지정하는 방법
-                                    전반을 일컫는다. 간단한 의미로는, 웹 상의 자료를 HTTP위에서 SOAP이나 쿠키를 통한 세션 트랙킹 같은 별도의 전송 계층 없이 전송하기 위한 아주
-                                    간단한 인터페이스를 말한다.<br>
-                                    이 두 가지의 의미는 겹치는 부분과 충돌되는 부분이 있다. 필딩의 REST 아키텍처 형식을 따르면 HTTP나 WWW가 아닌 아주 커다란 소프트웨어
-                                    시스템을 설계하는 것도 가능하다. 또한, 리모트 프로시저 콜 대신에 간단한 XML과 HTTP 인터페이스를 이용해 설계하는 것도 가능하다.<br>
-                                    필딩의 REST 원리를 따르는 시스템은 종종 RESTful이란 용어로 지칭된다. 열정적인 REST 옹호자들은 스스로를 RESTafrians 이라고
-                                    부른다.
-                                </h4>
-                                <h6 clss="board-info">
-                                    <span class="date">방금 전</span>
-                                </h6>
-                            </section>
-                        </div>
-                    </li>
-                    <li>
-                        <div>
-                            <section class="content-container">
-                                <div class="profile">
-                                    <div><img src="${pageContext.request.contextPath}/static/images/reply_profile.png" width="15px"></div>
-                                    <h6 class="writer">홍길동</h6>
-                                </div>
-                                <h4 class="title">@RestController 때려놓으면 ViewResolver 사용 못함</h4>
-                                <h6 clss="board-info">
-                                    <span class="date">1일 전</span>
-                                </h6>
-                            </section>
-                        </div>
-                    </li>
-                    <li>
-                        <div>
-                            <section class="content-container">
-                                <div class="profile">
-                                    <div><img src="${pageContext.request.contextPath}/static/images/reply_profile.png" width="15px"></div>
-                                    <h6 class="writer">홍길동</h6>
-                                </div>
-                                <h4 class="title">어노테이션 하나씩 구글링 해보셈</h4>
-                                <section class="reply-update-wrap">
-                                    <textarea id="" cols="30" rows="1" placeholder="내 댓글"></textarea>
-                                    <div class="button-wrap">
-                                        <button class="update-done">작성완료</button>
-                                        <button class="calcel">취소</button>
-                                    </div>
-                                </section>
-                                <h6 clss="board-info">
-                                    <span class="date">2일 전</span>
-                                    <span class="date">·</span>
-                                    <span class="update">수정</span>
-                                    <span class="date">·</span>
-                                    <span class="delete">삭제</span>
-                                </h6>
-                            </section>
-                        </div>
-                    </li>
-                    <li>
-                        <div>
-                            <section class="content-container">
-                                <div class="profile">
-                                    <div><img src="${pageContext.request.contextPath}/static/images/reply_profile.png" width="15px"></div>
-                                    <h6 class="writer">홍길동</h6>
-                                </div>
-                                <h4 class="title">
-                                    REST가 Representational State Transfer 축약어인데 페이지 요청보다는 데이터 요청에 가깝다고 생각하면 됨.
-                                </h4>
-                                <h6 clss="board-info">
-                                    <span class="date">3일 전</span>
-                                </h6>
-                            </section>
-                        </div>
-                    </li>
-                    <li>
-                        <div>
-                            <section class="content-container">
-                                <div class="profile">
-                                    <div><img src="${pageContext.request.contextPath}/static/images/reply_profile.png" width="15px"></div>
-                                    <h6 class="writer">홍길동</h6>
-                                </div>
-                                <h4 class="title">REST 어렵긴 하지..</h4>
-                                <h6 clss="board-info">
-                                    <span class="date">6일 전</span>
-                                </h6>
-                            </section>
-                        </div>
-                    </li>
-                </ul>
-            </section> --%>
         </section>
     </main>
 </body>
@@ -174,7 +76,9 @@
 <script src="https://rawgit.com/jackmoore/autosize/master/dist/autosize.min.js"></script>
 <script>
 	let contextPath = "${pageContext.request.contextPath}";
+	let boardId = "${board.boardId}";
 </script>
 <script src="${pageContext.request.contextPath}/static/js/board/board.js"></script>
-
+<%-- <script src="${pageContext.request.contextPath}/static/js/board/reply.js"></script> --%>
+<script src="${pageContext.request.contextPath}/static/js/board/reply-scroll.js"></script>
 </html>

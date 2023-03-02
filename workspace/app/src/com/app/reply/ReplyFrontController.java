@@ -1,4 +1,4 @@
-package com.app.file;
+package com.app.reply;
 
 import java.io.IOException;
 
@@ -9,16 +9,21 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.app.Result;
 
-public class FileFrontController extends HttpServlet {
+public class ReplyFrontController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String uri = req.getRequestURI();
 		String contextPath = req.getContextPath();
 		String target = uri.replace(contextPath, "").split("\\.")[0];
-		Result result = null;
 		
-		if(target.equals("/file/download")) {
-			new DownloadController().execute(req, resp);
+		if(target.equals("/reply/writeOk")) {
+			new WriteOkController().execute(req, resp);
+		}else if(target.equals("/reply/listOk")) {
+			new ListOkController().execute(req, resp);
+		}else if(target.equals("/reply/updateOk")) {
+			
+		}else if(target.equals("/reply/deleteOk")) {
+			
 		}else {
 			System.out.println(target);
 		}
@@ -29,3 +34,19 @@ public class FileFrontController extends HttpServlet {
 		doGet(req, resp);
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

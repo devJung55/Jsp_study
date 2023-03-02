@@ -675,3 +675,43 @@ form[name='writeForm'] button {
     color: rgb(255, 255, 255);
     background-color: rgb(235 124 120);
 }
+
+#more-replies {
+	cursor: pointer;
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	height: 40px;
+	font-size: 1rem;
+	border: none;
+	background-color: rgb(251 117 117);
+}
+
+#more-replies div {
+	line-height: 40px;
+    font-weight: bold;
+}
+
+#more-replies div + div{
+	line-height: 50px;
+}
+
+@keyframes rotate_image{
+	100% {
+    	transform: rotate(360deg);
+    }
+}
+
+div.logo-area {
+	text-align: center;
+}
+
+img.infinite_rotating_logo{
+    animation: rotate_image 0.5s linear infinite;
+    transform-origin: 50% 50%;
+}
+ 
+
+
+
+

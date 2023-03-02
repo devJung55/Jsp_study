@@ -39,4 +39,20 @@
   	<servlet-name>file</servlet-name>
   	<url-pattern>*.file</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>reply</servlet-name>
+  	<servlet-class>com.app.reply.ReplyFrontController</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>reply</servlet-name>
+  	<url-pattern>*.reply</url-pattern>
+  </servlet-mapping>
 </web-app>
+
+
+
+
+
+

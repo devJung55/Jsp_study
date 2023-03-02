@@ -53,7 +53,7 @@ public class BoardFrontController extends HttpServlet {
 			result = new DeleteOkController().execute(req, resp);
 			
 		}else {
-			
+			System.out.println(target);
 		}
 		
 		if(result != null) {

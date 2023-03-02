@@ -29,7 +29,7 @@
                     <a href="javascript:location.href='${pageContext.request.contextPath}/board/listOk.board?page=${page}&sort=${sort}&type=${empty type ? 'null' : type}&keyword=${keyword}'">목록으로</a>
                 </section>
             </article>
-            <form action="${pageContext.request.contextPath}/board/updateOk.boardb" name="writeForm" method="post" enctype="multipart/form-data">
+            <form action="${pageContext.request.contextPath}/board/updateOk.board" name="writeForm" method="post" enctype="multipart/form-data">
             	<input type="hidden" name="boardId" value="${board.boardId}">
                 <legend>
                     <h3>

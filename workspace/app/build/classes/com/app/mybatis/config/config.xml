@@ -11,6 +11,8 @@
 		<typeAlias type="com.app.board.domain.BoardVO" alias="boardVO"/>
 		<typeAlias type="com.app.board.domain.BoardDTO" alias="boardDTO"/>
 		<typeAlias type="com.app.file.domain.FileVO" alias="fileVO"/>
+		<typeAlias type="com.app.reply.domain.ReplyVO" alias="replyVO"/>
+		<typeAlias type="com.app.reply.domain.ReplyDTO" alias="replyDTO"/>
 	</typeAliases>
 	
 	<environments default="mysql">
@@ -29,6 +31,7 @@
 		<mapper resource="com/app/mybatis/mapper/memberMapper.xml"/>
 		<mapper resource="com/app/mybatis/mapper/boardMapper.xml"/>
 		<mapper resource="com/app/mybatis/mapper/fileMapper.xml"/>
+		<mapper resource="com/app/mybatis/mapper/replyMapper.xml"/>
 	</mappers>
 </configuration>
 
