@@ -28,14 +28,9 @@
             <article>
                 <div class="login">
                     <h2 id="title">
-                        스프링부트 로그인
+                        JSP 로그인
                     </h2>
-                    <h5>스프링부트 아이디로<br>모든 스프링부트 서비스를 이용할 수 있습니다.</h5>
-                    <div id="skills">
-                        <img src="${pageContext.request.contextPath}/static/images/java.svg">
-                        <img src="${pageContext.request.contextPath}/static/images/oracle.svg">
-                        <img src="${pageContext.request.contextPath}/static/images/springboot.svg">
-                    </div>
+                    <h5>JSP 아이디로<br>모든 JSP 서비스를 이용할 수 있습니다.</h5>
                 </div>
                 <form action="${pageContext.request.contextPath}/loginOk.member" name="login" method="post">
                     <div class="login">

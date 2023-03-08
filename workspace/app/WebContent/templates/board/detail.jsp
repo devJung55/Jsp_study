@@ -24,8 +24,10 @@
                 <h6 class="info">게시글 상세보기</h6>
                 <section class="move-page">
                     <a href="javascript:location.href='${pageContext.request.contextPath}/board/listOk.board?page=${page}&sort=${sort}&type=${empty type ? 'null' : type}&keyword=${keyword}'">목록으로</a>
-                    <a href="javascript:location.href='${pageContext.request.contextPath}/board/update.board?page=${page}&sort=${sort}&type=${empty type ? 'null' : type}&keyword=${keyword}&boardId=${board.boardId}'" class="update">수정</a>
-                    <a href="javascript:location.href='${pageContext.request.contextPath}/board/deleteOk.board?page=${page}&sort=${sort}&type=${empty type ? 'null' : type}&keyword=${keyword}&boardId=${board.boardId}'" class="delete">삭제</a>
+                    <c:if test="${sessionScope.memberId eq board.memberId}">
+	                    <a href="javascript:location.href='${pageContext.request.contextPath}/board/update.board?page=${page}&sort=${sort}&type=${empty type ? 'null' : type}&keyword=${keyword}&boardId=${board.boardId}'" class="update">수정</a>
+	                    <a href="javascript:location.href='${pageContext.request.contextPath}/board/deleteOk.board?page=${page}&sort=${sort}&type=${empty type ? 'null' : type}&keyword=${keyword}&boardId=${board.boardId}'" class="delete">삭제</a>
+                    </c:if>
                 </section>
             </article>
             <section id="detail-title">
@@ -54,7 +56,7 @@
             </h5>
             <section id="replies-wrap">
 	            <div class="logo-area">
-					<img src="${pageContext.request.contextPath}/static/images/dimmed.png" class="infinite_rotating_logo" width="48">
+					<img src="${pageContext.request.contextPath}/static/images/dimmed-reply.png" class="infinite_rotating_logo" width="48">
 				</div>
                 <ul></ul>
                 <button type="button" id="more-replies">
@@ -77,8 +79,9 @@
 <script>
 	let contextPath = "${pageContext.request.contextPath}";
 	let boardId = "${board.boardId}";
+	let memberId = "${sessionScope.memberId}";
 </script>
 <script src="${pageContext.request.contextPath}/static/js/board/board.js"></script>
-<%-- <script src="${pageContext.request.contextPath}/static/js/board/reply.js"></script> --%>
-<script src="${pageContext.request.contextPath}/static/js/board/reply-scroll.js"></script>
+<script src="${pageContext.request.contextPath}/static/js/board/reply.js"></script>
+<%-- <script src="${pageContext.request.contextPath}/static/js/board/reply-scroll.js"></script> --%>
 </html>

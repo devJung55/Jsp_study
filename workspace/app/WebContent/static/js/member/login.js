@@ -52,10 +52,6 @@ $password.on("blur", function(){
     }
 });
 
-$password.on("blur", function(){
-
-});
-
 function showHelp($input, fileName){
     $input.next().attr("src", "/static/images/" + fileName);
 

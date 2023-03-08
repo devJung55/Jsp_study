@@ -20,6 +20,8 @@ public class DetailOkController implements Action {
 		BoardDAO boardDAO = new BoardDAO();
 		FileDAO fileDAO = new FileDAO();
 		
+		boardDAO.updateReadCount(boardId);
+		
 		req.setAttribute("board", boardDAO.select(boardId));
 		req.setAttribute("page", req.getParameter("page"));
 		req.setAttribute("type", req.getParameter("type"));

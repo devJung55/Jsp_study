@@ -21,9 +21,9 @@ public class ReplyFrontController extends HttpServlet {
 		}else if(target.equals("/reply/listOk")) {
 			new ListOkController().execute(req, resp);
 		}else if(target.equals("/reply/updateOk")) {
-			
+			new UpdateOkController().execute(req, resp);
 		}else if(target.equals("/reply/deleteOk")) {
-			
+			new DeleteOkController().execute(req, resp);
 		}else {
 			System.out.println(target);
 		}

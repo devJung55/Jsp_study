@@ -707,8 +707,13 @@ div.logo-area {
 }
 
 img.infinite_rotating_logo{
-    animation: rotate_image 0.5s linear infinite;
+    animation: rotate_image 1.5s linear infinite;
     transform-origin: 50% 50%;
+}
+
+div.dimmed-wrap {
+	display: flex;
+	justify-content: space-between;
 }
  
 

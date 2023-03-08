@@ -20,6 +20,22 @@
 		where board_id = #{boardId} 
 		limit #{nextStartRow}, #{rowCount}
 	</select>
+	
+	<update id="update" parameterType="replyVO">
+		update tbl_reply
+		set reply_content = #{replyContent}, reply_update_date = current_timestamp()
+		where reply_id = #{replyId}
+	</update>
+	
+	<select id="select" parameterType="long" resultType="replyVO">
+		select reply_id, reply_content, reply_register_date, reply_update_date, board_id, member_id 
+		from tbl_reply
+		where reply_id = #{replyId}
+	</select>
+	
+	<delete id="delete" parameterType="long">
+		delete from tbl_reply where reply_id = #{replyId}
+	</delete>
 </mapper>
 
 

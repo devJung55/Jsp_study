@@ -48,8 +48,14 @@ public class BoardDAO {
 		sqlSession.update("board.update", boardVO);
 	}
 
+//	게시글 삭제
 	public void delete(Long boardId) {
 		sqlSession.delete("board.delete", boardId);
+	}
+	
+//	조회수 수정
+	public void updateReadCount(Long boardId) {
+		sqlSession.update("board.updateReadCount", boardId);
 	}
 	
 }

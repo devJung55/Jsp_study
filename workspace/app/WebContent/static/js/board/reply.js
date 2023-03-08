@@ -1,8 +1,5 @@
 const $replyWrite = $("#reply-write-wrap");
 const $writeButton = $("#reply-write-wrap button");
-const $replyUpdate = $(".reply-update-wrap");
-const $updateButton = $("span.update");
-const $cancelButton = $("button.calcel");
 const $writeTextarea = $("form[name='writeForm'] textarea");
 const replyTexts = ['취소', ' ', '댓글 달기'];
 const $ul = $("#replies-wrap ul");
@@ -35,13 +32,71 @@ const replyService = (function(){
 			}
 		});
 	}
-	return {write: write, list: list};
+	
+	function update(reply, callback){
+		$.ajax({
+			url: contextPath + "/reply/updateOk.reply",
+			data: reply,
+			dataType: "json",
+			success: function(reply){
+				if(callback){
+					callback(reply);
+				}
+			}
+		});
+	}
+	
+	function remove(replyId, callback) {
+		$.ajax({
+			url: contextPath + "/reply/deleteOk.reply",
+			data: {replyId: replyId},
+			success: function(){
+				if(callback) {
+					callback();
+				}
+			}
+		});
+	}
+	
+	return {write: write, list: list, update: update, remove: remove};
 })();
 
 /*=======================================================================*/
 /*이벤트, DOM, Ajax*/
 /*=======================================================================*/
+$("#more-replies").hide();
 replyService.list(showList);
+
+$ul.on("click", "span.delete", function(){
+	let replyId = $(this).data("reply-id");
+	let $dimmedForReply = $("ul").find(".logo-area-reply");
+	let i = $ul.find("span.delete").index($(this));
+	$dimmedForReply.eq(i).show();
+	replyService.remove(replyId, function(){
+		$ul.children().remove();
+		page = 1;
+		$("#more-replies").hide();
+		$dimmedForReply.eq(i).hide();
+		$dimmed.show();
+		replyService.list(showList);
+	});
+});
+
+
+$ul.on("click", ".update-done", function(){
+	let reply = new Object();
+	let i = $ul.find(".update-done").index($(this));
+	let $textarea = $ul.find("textarea").eq(i); 
+	reply.replyId = $textarea.attr("id");
+	reply.replyContent = $textarea.val();
+	$dimmed.show();
+	replyService.update(reply, function(reply){
+		hideUpdate(i);
+		$ul.find("h4.title").eq(i).text(reply.replyContent);
+		$ul.find("span.time").eq(i).text(elapsedTime(reply.replyUpdateDate));
+		$dimmed.hide();
+	});
+});
 
 $("#more-replies").on("click", function(){
 	$("#more-replies").hide();
@@ -56,7 +111,7 @@ function showList(replyMoreDTO){
 	
 	let replies = replyMoreDTO.replies;
 	let text = "";
-	console.log(replyMoreDTO.isNextPage);
+
 	if(!replyMoreDTO.isNextPage){
 		$("#more-replies").hide();
 		
@@ -84,19 +139,31 @@ function showList(replyMoreDTO){
 	                    </div>
 	                    <h4 class="title">${reply.replyContent}</h4>
 	                    <section class="reply-update-wrap">
-	                        <textarea id="" cols="30" rows="1" placeholder="내 댓글"></textarea>
+	                        <textarea id="${reply.replyId}" cols="30" rows="1" placeholder="내 댓글"></textarea>
 	                        <div class="button-wrap">
 	                            <button class="update-done">작성완료</button>
 	                            <button class="calcel">취소</button>
 	                        </div>
 	                    </section>
-	                    <h6 clss="board-info">
-	                        <span class="date">${elapsedTime(reply.replyRegisterDate == reply.replyUpdateDate ? reply.replyRegisterDate : reply.replyUpdateDate)}</span>
-	                        <span class="date">·</span>
-	                        <span class="update">수정</span>
-	                        <span class="date">·</span>
-	                        <span class="delete">삭제</span>
-	                    </h6>
+						<div class='dimmed-wrap'>
+		                    <h6 clss="board-info">
+		                        <span class="date time">${elapsedTime(reply.replyRegisterDate == reply.replyUpdateDate ? reply.replyRegisterDate : reply.replyUpdateDate)}</span>
+			`
+			if(reply.memberId == memberId){
+				text += `
+			                        <span class="date">·</span>
+			                        <span class="update">수정</span>
+			                        <span class="date">·</span>
+			                        <span class="delete" data-reply-id="${reply.replyId}">삭제</span>
+						`
+			}
+			
+			text +=`
+		                    </h6>
+							<div class="logo-area logo-area-reply" style="display:none">
+								<img src="${contextPath}/static/images/dimmed-reply.png" class="infinite_rotating_logo" width="48">
+							</div>
+						</div>
 	                </section>
 	            </div>
 	        </li>
@@ -144,20 +211,34 @@ $writeButton.on("mouseout", function(){
     $(this).css("background-color", "rgb(255 255 255)");
 });
 
-$updateButton.on("click", function(){
+$ul.on("click", "span.update", function(){
+	/*수정 버튼이 여러 개이기 때문에, 클릭한 수정버튼에만 이벤트가 발생해야 한다.*/
+	/*누른 수정 버튼의 인덱스 번호를 i에 담아준다.*/
+	let i = $ul.find("span.update").index($(this));
+	showUpdate(i);
+});
+
+$ul.on("click", "button.calcel", function(){
+	let i = $ul.find("button.calcel").index($(this));
+	hideUpdate(i);
+});
+
+function showUpdate(i){
+	let $replyUpdate = $ul.find(".reply-update-wrap").eq(i);
     let content = $replyUpdate.prev().text().trim();
     let $textarea = $replyUpdate.find("textarea");
     $textarea.val(content);
     $replyUpdate.prev().hide();
     $replyUpdate.next().hide();
     $replyUpdate.show();
-});
+}
 
-$cancelButton.on("click", function(){
+function hideUpdate(i){
+	let $replyUpdate = $ul.find(".reply-update-wrap").eq(i);
     $replyUpdate.hide();
     $replyUpdate.prev().show();
     $replyUpdate.next().show();
-});
+}
 
 $writeTextarea.on("focus", function(){
     $(this).closest("span").css('border', '1px solid rgb(235 124 120)');

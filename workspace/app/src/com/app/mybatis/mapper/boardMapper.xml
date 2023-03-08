@@ -49,7 +49,7 @@
 	
 	<select id="select" parameterType="long" resultType="boardDTO">
 		select board_id, board_title, board_content, board_register_date, 
-		board_update_date, board_read_count, member_name
+		board_update_date, board_read_count, member_id, member_name
 		from view_board 
 		where board_id = #{boardId}
 	</select>
@@ -72,6 +72,12 @@
 	<delete id="delete" parameterType="long">
 		delete from tbl_board where board_id = #{boardId}
 	</delete>
+	
+	<update id="updateReadCount" parameterType="long">
+		update tbl_board
+		set board_read_count = board_read_count + 1
+		where board_id = #{boardId}
+	</update>
 </mapper>
 
 

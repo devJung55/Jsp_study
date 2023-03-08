@@ -30,6 +30,21 @@ public SqlSession sqlSession;
 	public boolean isNextPage(Map<String, Object> pageMap) {
 		return sqlSession.selectList("reply.isNextPage", pageMap).size() != 0;
 	}
+	
+//	댓글 수정
+	public void update(ReplyVO replyVO) {
+		sqlSession.update("reply.update", replyVO);
+	}
+	
+//	댓글 조회
+	public ReplyVO select(Long replyId) {
+		return sqlSession.selectOne("reply.select", replyId);
+	}
+	
+//	댓글 삭제
+	public void delete(Long replyId) {
+		sqlSession.delete("reply.delete", replyId);
+	}
 }
 
 

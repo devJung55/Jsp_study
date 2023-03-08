@@ -24,18 +24,18 @@
         <section id="join-container">
             <div id="logo">
                 <div id="back">
-                    <img src="${pageContext.request.contextPath}${pageContext.request.contextPath}/static/images/back.png">
+                    <img src="${pageContext.request.contextPath}/static/images/back.png">
                 </div>
-                <img src="${pageContext.request.contextPath}${pageContext.request.contextPath}/static/images/logo.png">
+                <img src="${pageContext.request.contextPath}/static/images/logo.png">
             </div>
             <article>
                 <div class="term">
                     <h3 id="title">
-                        스프링부트 가입을 시작합니다
+                        JSP 가입을 시작합니다
                     </h3>
-                    <h5>스프링부트 회원이 되면 커뮤니티, 댓글, 검색, 첨부 파일 모두 이용할 수 있습니다.</h5>
+                    <h5>JSP 회원이 되면 커뮤니티, 댓글, 검색, 첨부 파일 모두 이용할 수 있습니다.</h5>
                     <h5>
-                        스프링부트에 회원으로 이미 등록되어 있다면<br>
+                        JSP에 회원으로 이미 등록되어 있다면<br>
                         <span>
                             <a href="javascript:location.href='${pageContext.request.contextPath}/login.member'">로그인</a>을 통해 서비스를 이용해주세요.
                         </span>
@@ -45,7 +45,7 @@
                     <h3 id="title">
                         기본 정보를 입력해주세요
                     </h3>
-                    <h5>정확한 정보를 입력해야 정상적으로 서비스를 이용할 수 있습니다. 부정확한 정보를 입력하여 발생된 피해에 대해서는 스프링부트에 어떠한 책임도 없습니다. </h5>
+                    <h5>정확한 정보를 입력해야 정상적으로 서비스를 이용할 수 있습니다. 부정확한 정보를 입력하여 발생된 피해에 대해서는 JSP에 어떠한 책임도 없습니다. </h5>
                 </div>
                 <div class="join">
                     <h3 id="title">
@@ -171,7 +171,7 @@
                                 </div>
                             </li>
                         </ul>
-                        <p class="ad-content">스프링부트가 제공하는 서비스의 광고성 정보를 수신합니다.</p>
+                        <p class="ad-content">JSP가 제공하는 서비스의 광고성 정보를 수신합니다.</p>
                         <button type="button" class="next" onclick="goInfo()">다음</button>
                     </div>
                     <div class="info">
